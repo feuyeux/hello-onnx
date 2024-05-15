@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Slf4j
-public class HelloOnnxApplication {
+public class HelloOrtApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloOnnxApplication.class, args);
+		SpringApplication.run(HelloOrtApplication.class, args);
 	}
 
 }
