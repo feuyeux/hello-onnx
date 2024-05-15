@@ -12,6 +12,8 @@ import ai.onnxruntime.providers.CoreMLFlags;
 import org.feuyeux.hello.ort.pojo.Detection;
 import org.opencv.core.Mat;
 
+import static org.feuyeux.hello.ort.session.HelloOrtManager.getSessionOptions;
+
 public abstract class HelloOrtSession {
 
     public static final int INPUT_SIZE = 640;
@@ -27,18 +29,12 @@ public abstract class HelloOrtSession {
 
     OnnxTensor inputTensor;
 
-    public HelloOrtSession(String modelPath, String labelPath, float confThreshold, float nmsThreshold, int gpuDeviceId) throws OrtException, IOException {
+    public HelloOrtSession(String modelPath, String labelPath, float confThreshold, float nmsThreshold ) throws OrtException, IOException {
         nu.pattern.OpenCV.loadLocally();
 
         this.env = OrtEnvironment.getEnvironment();
-        var sessionOptions = new OrtSession.SessionOptions();
-        //
-        sessionOptions.addCoreML(EnumSet.of(CoreMLFlags.ONLY_ENABLE_DEVICE_WITH_ANE));
-        sessionOptions.setOptimizationLevel(OrtSession.SessionOptions.OptLevel.ALL_OPT);
-        if (gpuDeviceId >= 0) {
-            sessionOptions.addCUDA(gpuDeviceId);
-        }
-        this.session = this.env.createSession(modelPath, sessionOptions);
+
+        this.session = this.env.createSession(modelPath, getSessionOptions());
 
         Map<String, NodeInfo> inputMetaMap = this.session.getInputInfo();
         this.inputName = this.session.getInputNames().iterator().next();

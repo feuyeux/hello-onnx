@@ -22,23 +22,24 @@ mvn clean test -Dtest=HelloOrtTests#testImage
 ```
 
 input:
-- src/main/resources/Laptop and Mouse.png
-- src/main/resources/dog.jpg
-- src/main/resources/dog.png
-- src/main/resources/kite.jpg
+- `src/main/resources/Laptop and Mouse.png`
+- `src/main/resources/dog.jpg`
+- `src/main/resources/dog.png`
+- `src/main/resources/kite.jpg`
 
 output:
-- /tmp/prediction-Laptop and Mouse.png
-- /tmp/prediction-dog.png
-- /tmp/prediction-dog.jpg
+- `/tmp/prediction-Laptop and Mouse.png`
+- `/tmp/prediction-dog.png`
+- `/tmp/prediction-dog.jpg`
+- `/tmp/prediction-kite.jpg`
 
-![](src/main/resources/Laptop and Mouse.png)
+![Laptop and Mouse.png](src/main/resources/Laptop and Mouse.png)
 
 ```sh
 detectionList:[{"label":"mouse","bbox":[198.35149,119.59349,224.45099,158.48425],"confidence":0.91583246},{"label":"laptop","bbox":[54.62196,24.271353,186.86736,121.20319],"confidence":0.6366785}]
 ```
 
-![](doc/prediction-Laptop and Mouse.png)
+![Prediction for Laptop and Mouse.png](doc/prediction-Laptop and Mouse.png)
 
 ## 1 [CUDA](CUDA.md)
 

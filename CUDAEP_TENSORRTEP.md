@@ -4,10 +4,10 @@
 
 <https://developer.nvidia.com/blog/end-to-end-ai-for-nvidia-based-pcs-cuda-and-tensorrt-execution-providers-in-onnx-runtime/>
 
-- [CUDA EP](https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html) uses the CuDNN inference library, which is based on granular operation blocks for neural networks.
+- [CUDA EP](https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html) uses the **cuDNN** inference library, which is based on granular operation blocks for neural networks.
 - [TensorRT EP](https://onnxruntime.ai/docs/execution-providers/TensorRT-ExecutionProvider.html) evaluates the whole graph and collects all possible paths to execute the graph.
 
-**cuDNN** only evaluates its own kernels while NVIDIA **TensorRT** strategies span multiple libraries including cuDNN. the workspace memory that TensorRT can allocate for intermediate buffers inside the network.
+**cuDNN** only evaluates its own kernels while NVIDIA **TensorRT** strategies span multiple libraries including cuDNN. The workspace memory that TensorRT can allocate for intermediate buffers inside the network.
 
 ### nvidia inference stack
 
