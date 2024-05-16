@@ -26,13 +26,12 @@ public class ModelFactory {
         String labelPath =  String.valueOf((file2));
         float confThreshold = Float.parseFloat(properties.getProperty("confThreshold"));
         float nmsThreshold = Float.parseFloat(properties.getProperty("nmsThreshold"));
-        int gpuDeviceId = Integer.parseInt(properties.getProperty("gpuDeviceId"));
 
         if ("yolov5".equalsIgnoreCase(modelName)) {
-            return new HelloOrtSessionV5(modelPath, labelPath, confThreshold, nmsThreshold, gpuDeviceId);
+            return new HelloOrtSessionV5(modelPath, labelPath, confThreshold, nmsThreshold);
         }
         else if ("yolov8".equalsIgnoreCase(modelName)) {
-            return new HelloOrtSessionV8(modelPath, labelPath, confThreshold, nmsThreshold, gpuDeviceId);
+            return new HelloOrtSessionV8(modelPath, labelPath, confThreshold, nmsThreshold);
         }
         else {
             throw new NotImplementedException();

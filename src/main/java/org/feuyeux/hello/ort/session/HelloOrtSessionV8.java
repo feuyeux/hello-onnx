@@ -17,8 +17,8 @@ import java.util.*;
 
 public class HelloOrtSessionV8 extends HelloOrtSession{
 
-    public HelloOrtSessionV8(String modelPath, String labelPath, float confThreshold, float nmsThreshold, int gpuDeviceId) throws OrtException, IOException {
-        super(modelPath, labelPath, confThreshold, nmsThreshold, gpuDeviceId);
+    public HelloOrtSessionV8(String modelPath, String labelPath, float confThreshold, float nmsThreshold) throws OrtException, IOException {
+        super(modelPath, labelPath, confThreshold, nmsThreshold);
     }
 
     @Override
