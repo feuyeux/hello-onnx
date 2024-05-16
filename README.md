@@ -1,37 +1,29 @@
 # Hello [ORT(OnnxRumTime)](https://onnxruntime.ai/)
 
-## 0 onnxruntime
-- https://github.com/microsoft/onnxruntime
-- https://mvnrepository.com/artifact/com.microsoft.onnxruntime
+An ONNX(Open Neural Network Exchange) Runtime Demo in Java
 
-![onnx architecture](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/228d22d3-6e3e-48b1-811c-1d48353f031c.png)
+## About ORT
+- Github: https://github.com/microsoft/onnxruntime
+- Maven Repo: https://mvnrepository.com/artifact/com.microsoft.onnxruntime
+- ORT Architecture: ![onnx architecture](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/228d22d3-6e3e-48b1-811c-1d48353f031c.png)
+- ORT Workflow: 
+  ![](doc/onnx.drawio.png)
+  - [TensorRT](https://developer.nvidia.com/tensorrt)
+  - [PyTorch](https://pytorch.org/)
+  - [TensorFlow](https://www.tensorflow.org/)
+  - [onnx runtime](https://onnxruntime.ai/)
+  - [OpenVino](https://openvino.ai/)
 
-![](doc/onnx.drawio.png)
-
-- [TensorRT](https://developer.nvidia.com/tensorrt)
-- [PyTorch](https://pytorch.org/)
-- [TensorFlow](https://www.tensorflow.org/)
-- [onnx runtime](https://onnxruntime.ai/)
-- [OpenVino](https://openvino.ai/)
-
-### Hello Ort Demo
-> https://github.com/jhgan00/java-ort-example-yolov5.git
+## About Inference Service on ORT Demo
+> YOLO(You only look once)
+>
+> - Paper: https://arxiv.org/abs/1506.02640
+>
+> - Engineering: from https://github.com/jhgan00/java-ort-example-yolov5.git
 
 ```sh
 mvn clean test -Dtest=HelloOrtTests#testImage
 ```
-
-input:
-- `src/main/resources/Laptop and Mouse.png`
-- `src/main/resources/dog.jpg`
-- `src/main/resources/dog.png`
-- `src/main/resources/kite.jpg`
-
-output:
-- `/tmp/prediction-Laptop and Mouse.png`
-- `/tmp/prediction-dog.png`
-- `/tmp/prediction-dog.jpg`
-- `/tmp/prediction-kite.jpg`
 
 ![Laptop and Mouse.png](src/main/resources/Laptop and Mouse.png)
 
@@ -41,7 +33,9 @@ detectionList:[{"label":"mouse","bbox":[198.35149,119.59349,224.45099,158.48425]
 
 ![Prediction for Laptop and Mouse.png](doc/prediction-Laptop and Mouse.png)
 
-## 1 [CUDA](CUDA.md)
+## About dependencies
+
+### 1 [CUDA](CUDA.md)
 
 **Microarchitecture**
 
@@ -74,22 +68,22 @@ detectionList:[{"label":"mouse","bbox":[198.35149,119.59349,224.45099,158.48425]
 6. **Autonomous car and driver assistance**
    - Drive series
 
-### 1 Requirements
+#### 1 Requirements
 
 https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#requirements
 
 https://docs.nvidia.com/deeplearning/cudnn/latest/installation/overview.html
 
-### 2 CUDA(Compute Unified Device Architecture)
+#### 2 CUDA(Compute Unified Device Architecture)
 
 - `11.8` https://developer.nvidia.com/cuda-11-8-0-download-archive
 - `12` https://developer.nvidia.com/cuda-downloads
 
-### 3 CUDA Deep Neural Network library (cuDNN)
+#### 3 CUDA Deep Neural Network library (cuDNN)
 
 https://developer.nvidia.com/cudnn-downloads
 
-## 2 CoreML
+### 2 CoreML
 
 https://developer.apple.com/documentation/coreml
 
@@ -97,7 +91,7 @@ Which devices have an ANE?
 
 https://github.com/hollance/neural-engine/blob/master/docs/supported-devices.md
 
-## 3 MORE…
+## MORE…
 
 ### Issues solved
 
