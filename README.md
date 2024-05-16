@@ -15,10 +15,9 @@ An ONNX(Open Neural Network Exchange) Runtime Demo in Java
   - [OpenVino](https://openvino.ai/)
 
 ## About Inference Service on ORT Demo
-> YOLO(You only look once)
->
+> [YOLO(You only look once)](https://pjreddie.com/darknet/yolo)
+> 
 > - Paper: https://arxiv.org/abs/1506.02640
->
 > - Engineering: from https://github.com/jhgan00/java-ort-example-yolov5.git
 
 ```sh
