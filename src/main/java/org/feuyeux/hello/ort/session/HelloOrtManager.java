@@ -10,8 +10,7 @@ import java.util.EnumSet;
 
 @Slf4j
 public class HelloOrtManager {
-    private static final long _2GB = 2L * 1024 * 1024 * 1024;
-    private static final String GPU_MEM_LIMIT = String.valueOf(_2GB);
+    private static final long GB = 1024 * 1024 * 1024;
 
     public static OrtSession.SessionOptions getSessionOptions() throws OrtException {
         OrtSession.SessionOptions options = new OrtSession.SessionOptions();
@@ -29,8 +28,7 @@ public class HelloOrtManager {
         if (osName.contains("mac")) {
             options.addCoreML(EnumSet.of(CoreMLFlags.ONLY_ENABLE_DEVICE_WITH_ANE));
         } else if (isCudaSupported) {
-            options.addCUDA(getOrtCUDAProviderOptions());
-
+            options.addCUDA(getOrtCUDAProviderOptions(2));
         } else {
             options.addCPU(true);
         }
@@ -40,10 +38,10 @@ public class HelloOrtManager {
         return options;
     }
 
-    public static OrtCUDAProviderOptions getOrtCUDAProviderOptions() throws OrtException {
+    public static OrtCUDAProviderOptions getOrtCUDAProviderOptions(int limit) throws OrtException {
         OrtCUDAProviderOptions cudaProviderOptions = new OrtCUDAProviderOptions();
         // https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#gpu_mem_limit
-        cudaProviderOptions.add("gpu_mem_limit", GPU_MEM_LIMIT);
+        cudaProviderOptions.add("gpu_mem_limit", String.valueOf(limit * GB));
         // https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#arena_extend_strategy
         cudaProviderOptions.add("arena_extend_strategy", "kNextPowerOfTwo");
         // cudaProviderOptions.add("arena_extend_strategy", "kSameAsRequested");

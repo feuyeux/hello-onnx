@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static org.feuyeux.hello.ort.session.HelloOrtManager.getSessionOptions;
+import static org.feuyeux.hello.ort.session.HelloOrtSession.getEnvironment;
 
 // How to limit GPU memory usage in onnxruntime
 // https://stackoverflow.com/questions/68497294/how-to-limit-gpu-memory-usage-in-onnxruntime
@@ -35,7 +36,7 @@ public class HelloOrtTests {
 
 
     @Test
-    public void testImage() {
+    public void testYolo() {
         ModelFactory modelFactory = new ModelFactory();
         HelloOrtSession inferenceSession;
         Gson gson;
@@ -51,20 +52,20 @@ public class HelloOrtTests {
                 Imgcodecs.imwrite("/tmp/prediction-" + imageName, img);
             }
         } catch (OrtException | IOException e) {
-            log.error("", e);
+            log.debug("", e);
             System.exit(1);
         }
     }
 
     @Test
     public void textLoadOnnx() throws InterruptedException {
-        var env = OrtEnvironment.getEnvironment(OrtLoggingLevel.ORT_LOGGING_LEVEL_INFO, "hello-onnx");
+        var env = getEnvironment();
         log.info("Hello onnxruntime, version:{}", env.getVersion());
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource(modelName);
+        var classLoader = getClass().getClassLoader();
+        var resource = classLoader.getResource(modelName);
         if (resource != null) {
-            File file = new File(resource.getFile());
-            String modelPath = file.getAbsolutePath();
+            var file = new File(resource.getFile());
+            var modelPath = file.getAbsolutePath();
             try (OrtSession session = env.createSession(modelPath, getSessionOptions())) {
                 log.info("model path:{}", modelPath);
                 log.info("model num inputs:{}", session.getNumInputs());

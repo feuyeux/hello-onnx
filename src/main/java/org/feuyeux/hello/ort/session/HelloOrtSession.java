@@ -31,27 +31,27 @@ public abstract class HelloOrtSession {
 
     public HelloOrtSession(String modelPath, String labelPath, float confThreshold, float nmsThreshold ) throws OrtException, IOException {
         nu.pattern.OpenCV.loadLocally();
-
-        this.env = OrtEnvironment.getEnvironment();
-
+        this.env = getEnvironment();
         this.session = this.env.createSession(modelPath, getSessionOptions());
 
         Map<String, NodeInfo> inputMetaMap = this.session.getInputInfo();
         this.inputName = this.session.getInputNames().iterator().next();
         NodeInfo inputMeta = inputMetaMap.get(this.inputName);
         this.inputType = ((TensorInfo) inputMeta.getInfo()).type;
-
         this.confThreshold = confThreshold;
         this.nmsThreshold = nmsThreshold;
-
         BufferedReader br = new BufferedReader(new FileReader(labelPath));
         String line;
         this.labelNames = new ArrayList<>();
         while ((line = br.readLine()) != null) {
             this.labelNames.add(line);
         }
-
     }
+
+    public static OrtEnvironment getEnvironment() {
+        return OrtEnvironment.getEnvironment(OrtLoggingLevel.ORT_LOGGING_LEVEL_WARNING, "HELLO-ORT");
+    }
+
     public abstract List<Detection> run(Mat img) throws OrtException;
 
     private float computeIOU(float[] box1, float[] box2) {
