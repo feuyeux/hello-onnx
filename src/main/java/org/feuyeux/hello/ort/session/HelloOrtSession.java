@@ -29,7 +29,7 @@ public abstract class HelloOrtSession {
 
     OnnxTensor inputTensor;
 
-    public HelloOrtSession(String modelPath, String labelPath, float confThreshold, float nmsThreshold ) throws OrtException, IOException {
+    public HelloOrtSession(String modelPath, String labelPath, float confThreshold, float nmsThreshold) throws OrtException, IOException {
         nu.pattern.OpenCV.loadLocally();
         this.env = getEnvironment();
         this.session = this.env.createSession(modelPath, getSessionOptions());
@@ -79,7 +79,7 @@ public abstract class HelloOrtSession {
         // standard nms
         while (!bboxes.isEmpty()) {
             // 현재 가장 confidence 가 높은 박스 pop
-            float[] bestBbox = bboxes.removeLast();
+            float[] bestBbox = bboxes.remove(bboxes.size() - 1);
             bestBboxes.add(bestBbox);
             bboxes = bboxes.stream().filter(a -> computeIOU(a, bestBbox) < iouThreshold).collect(Collectors.toList());
         }

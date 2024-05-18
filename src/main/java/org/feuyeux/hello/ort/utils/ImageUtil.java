@@ -96,7 +96,7 @@ public class ImageUtil {
         // debugging image
         for (Detection detection : detectionList) {
 
-            float[] bbox = detection.bbox();
+            float[] bbox = detection.getBbox();
             Scalar color = new Scalar(249, 218, 60);
             Imgproc.rectangle(img,
                     new Point(bbox[0], bbox[1]),
@@ -105,7 +105,7 @@ public class ImageUtil {
                     2);
             Imgproc.putText(
                     img,
-                    detection.label(),
+                    detection.getLabel(),
                     new Point(bbox[0] - 1, bbox[1] - 5),
                     Imgproc.FONT_HERSHEY_SIMPLEX,
                     .5, color,

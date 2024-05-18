@@ -59,13 +59,13 @@ public class HelloOrtTests {
 
     @Test
     public void textLoadOnnx() throws InterruptedException {
-        var env = getEnvironment();
+        OrtEnvironment env = getEnvironment();
         log.info("Hello onnxruntime, version:{}", env.getVersion());
-        var classLoader = getClass().getClassLoader();
-        var resource = classLoader.getResource(modelName);
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resource = classLoader.getResource(modelName);
         if (resource != null) {
-            var file = new File(resource.getFile());
-            var modelPath = file.getAbsolutePath();
+            File file = new File(resource.getFile());
+            String  modelPath = file.getAbsolutePath();
             try (OrtSession session = env.createSession(modelPath, getSessionOptions())) {
                 log.info("model path:{}", modelPath);
                 log.info("model num inputs:{}", session.getNumInputs());

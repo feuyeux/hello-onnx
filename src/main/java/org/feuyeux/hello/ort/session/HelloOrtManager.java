@@ -22,6 +22,7 @@ public class HelloOrtManager {
                 System.loadLibrary("cudart");
                 isCudaSupported = true;
             } catch (UnsatisfiedLinkError e) {
+                log.info("{}",e.getMessage());
                 log.error("CUDA is not supported on this system.");
             }
         }
